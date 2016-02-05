@@ -142,4 +142,14 @@ class MaxCDNPlugin extends BasePlugin
     {
         return true;
     }
+
+    /**
+     * Make vendors available within your plugin.
+     *
+     * @return string
+     */
+    public function init()
+    {
+        require CRAFT_PLUGINS_PATH.'/maxcdn/vendor/autoload.php';
+    }
 }
