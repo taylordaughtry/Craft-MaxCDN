@@ -2,10 +2,27 @@
 
 {{
 	forms.textField({
-		label: "Sample Text Field",
-		instructions: "MaxCDN Setting",
-		name: 'sample_setting',
-		value: settings.sample_setting
+		label: "Alias",
+		name: 'alias',
+		value: settings.alias
+
+	})
+}}
+
+{{
+	forms.textField({
+		label: "Consumer Key",
+		name: 'consumer_key',
+		value: settings.consumer_key
+
+	})
+}}
+
+{{
+	forms.textField({
+		label: "Consumer Secret",
+		name: 'consumer_secret',
+		value: settings.consumer_secret
 
 	})
 }}
