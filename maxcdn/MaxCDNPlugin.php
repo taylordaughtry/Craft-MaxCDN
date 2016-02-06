@@ -129,8 +129,8 @@ class MaxCDNPlugin extends BasePlugin
         return [
             'sample_setting' => array(AttributeType::Mixed, 'default' => ''),
             'alias' => array(AttributeType::String, 'default' => ''),
-            'consumer_key' => array(AttributeType::String, 'default' => ''),
-            'consumer_secret' => array(AttributeType::String, 'default' => ''),
+            'consumerKey' => array(AttributeType::String, 'default' => ''),
+            'consumerSecret' => array(AttributeType::String, 'default' => ''),
         ];
     }
 

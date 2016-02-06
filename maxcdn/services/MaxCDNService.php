@@ -12,8 +12,8 @@ class MaxCDNService extends BaseApplicationComponent
 
     	$this->api = new \NetDNA(
 	    	$this->settings->alias,
-	    	$this->settings->consumer_key,
-	    	$this->settings->consumer_secret
+	    	$this->settings->consumerKey,
+	    	$this->settings->consumerSecret
     	);
     }
 
