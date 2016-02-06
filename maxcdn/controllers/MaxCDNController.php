@@ -12,6 +12,8 @@ class MaxCDNController extends BaseController
 
 	public function actionIndex()
 	{
-		return $this->renderTemplate('maxcdn/index');
+		return $this->renderTemplate('maxcdn/index', [
+			'zones' => craft()->maxCDN->getZones()
+		]);
 	}
 }
