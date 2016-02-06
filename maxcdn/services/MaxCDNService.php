@@ -3,7 +3,14 @@ namespace Craft;
 
 class MaxCDNService extends BaseApplicationComponent
 {
+    /*
+        Plugin Settings
+     */
     protected $settings;
+
+    /*
+        An instance of the MaxCDN API.
+     */
 	protected $api;
 
     public function __construct()
@@ -17,6 +24,14 @@ class MaxCDNService extends BaseApplicationComponent
     	);
     }
 
+    /**
+     * Get a list of zones. This DOES NOT include stats, just the ID,
+     * name, and other relevant metadata about the zone.
+     *
+     * @method getZones
+     *
+     * @return array
+     */
     public function getZones()
     {
         $response = $this->callApi('/zones.json');
@@ -24,6 +39,16 @@ class MaxCDNService extends BaseApplicationComponent
         return $response->zones;
     }
 
+    /**
+     * Make a call to the MaxCDN API with the provided endpoint, then
+     * decode the response and return the data itself.
+     *
+     * @method callApi
+     *
+     * @param [type] $endpoint [description]
+     *
+     * @return [type] [description]
+     */
     private function callApi($endpoint)
     {
         $response = $this->api->get($endpoint);

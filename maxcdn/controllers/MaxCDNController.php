@@ -10,6 +10,13 @@ class MaxCDNController extends BaseController
 		$this->settings = craft()->plugins->getPlugin('maxcdn')->getSettings();
 	}
 
+	/**
+	 * Generates the index page HTML and passes the relevant variables.
+	 *
+	 * @method actionIndex
+	 *
+	 * @return string
+	 */
 	public function actionIndex()
 	{
 		return $this->renderTemplate('maxcdn/index', [
