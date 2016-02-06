@@ -19,8 +19,24 @@ class MaxCDNController extends BaseController
 	 */
 	public function actionIndex()
 	{
+		$zones = craft()->maxCDN->getZones();
+
+
+		foreach ($zones as $zone) {
+			$stats = craft()->maxCDN->getZoneStats($zone->id);
+
+			$viewData[$zone->id] = [
+				'name' => $zone->name,
+				'hits' => $stats->hit,
+				'cacheHits' => $stats->cache_hit,
+				'nonCacheHits' => $stats->noncache_hit,
+				'size' => $stats->size,
+
+			];
+		}
+
 		return $this->renderTemplate('maxcdn/index', [
-			'zones' => craft()->maxCDN->getZones()
+			'zones' => $viewData
 		]);
 	}
 }
