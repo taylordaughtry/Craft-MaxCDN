@@ -34,9 +34,9 @@ class MaxCDNService extends BaseApplicationComponent
      */
     public function getZones()
     {
-        $response = $this->callApi('/zones.json');
+        $response = $this->callApi('/zones.json', 'zones');
 
-        return $response->zones;
+        return $response;
     }
 
     /**
@@ -49,9 +49,9 @@ class MaxCDNService extends BaseApplicationComponent
      */
     public function getZoneStats($id)
     {
-        $response = $this->callApi('/reports/' . $id . '/stats.json');
+        $response = $this->callApi('/reports/' . $id . '/stats.json', 'stats');
 
-        return $response->stats;
+        return $response;
     }
 
     /**
@@ -64,10 +64,10 @@ class MaxCDNService extends BaseApplicationComponent
      *
      * @return [type] [description]
      */
-    private function callApi($endpoint)
+    private function callApi($endpoint, $reportType)
     {
         $response = $this->api->get($endpoint);
 
-        return json_decode($response)->data;
+        return json_decode($response)->data->$reportType;
     }
 }
