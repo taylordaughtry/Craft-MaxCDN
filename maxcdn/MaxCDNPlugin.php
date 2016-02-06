@@ -155,4 +155,18 @@ class MaxCDNPlugin extends BasePlugin
     {
         require CRAFT_PLUGINS_PATH.'/maxcdn/vendor/autoload.php';
     }
+
+    /**
+     * Tell Craft where to send our plugin's URLs.
+     *
+     * @method registerCpRoutes
+     *
+     * @return array
+     */
+    public function registerCpRoutes()
+    {
+        return [
+            'maxcdn' => ['action' => 'MaxCDN/index']
+        ];
+    }
 }
