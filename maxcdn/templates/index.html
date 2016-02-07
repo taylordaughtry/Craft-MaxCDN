@@ -1,34 +1,66 @@
 {% extends "_layouts/cp" %}
 
 {% set title = "Zone Statistics"|t %}
-
-{% set crumbs = [
-    { label: "MaxCDN"|t, url: url('maxcdn') },
-] %}
-
+{% set crumbs = [{ label: "MaxCDN"|t, url: url('maxcdn') }] %}
 {% set docsUrl = craft.plugins.getPlugin('maxcdn').getDocumentationUrl %}
 
-{% set content %}
-	<div class="padded">
-		<table class="data fullwidth">
-			<thead>
-				<tr>
-					<th scope="col">Zone</th>
-					<th scope="col">Cache Hits</th>
-					<th scope="col">Hits</th>
-					<th scope="col">Non-Cache Hits</th>
-					<th scope="col">Size</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for zone in zones %}
-				<tr>
-					{% for stat in zone %}
-					<td>{{ stat }}</td>
-					{% endfor %}
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+{% includejsresource 'js/Dashboard.js' %}
+
+{% block main %}
+<div class="grid first" data-max-cols="4">
+	<div class="item" data-colspan="2">
+		<div class="widget">
+			<div class="pane">
+				<h2>Files</h2>
+				<table class="data fullwidth">
+					<thead>
+						<tr>
+							<th scope="col">Filename</th>
+							<th scope="col">Cache Date</th>
+							<th scope="col">Hits</th>
+							<th scope="col">Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for file in files %}
+						<tr>
+							<td>{{ file.uri }}</td>
+							<td>{{ file.timestamp|date('M d, Y') }}</td>
+							<td>{{ file.hit }}</td>
+							<td>{{ file.size }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
-{% endset %}
+	<div class="item" data-colspan="1">
+		<div class="widget">
+			<div class="pane">
+				<h2>Zones</h2>
+				<table class="data fullwidth">
+					<thead>
+						<tr>
+							<th scope="col">Zone</th>
+							<th scope="col">Cache Hits</th>
+							<th scope="col">Hits</th>
+							<th scope="col">Non-Cache Hits</th>
+							<th scope="col">Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for zone in zones %}
+						<tr>
+							{% for stat in zone %}
+							<td>{{ stat }}</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

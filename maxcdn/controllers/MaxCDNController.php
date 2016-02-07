@@ -37,7 +37,8 @@ class MaxCDNController extends BaseController
 		}
 
 		return $this->renderTemplate('maxcdn/index', [
-			'zones' => $viewData
+			'zones' => $viewData,
+			'files' => craft()->maxCDN->getPopularFiles(),
 		]);
 	}
 }
