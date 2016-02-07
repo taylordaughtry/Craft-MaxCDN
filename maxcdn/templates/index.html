@@ -6,6 +6,8 @@
     { label: "MaxCDN"|t, url: url('maxcdn') },
 ] %}
 
+{% set docsUrl = craft.plugins.getPlugin('maxcdn').getDocumentationUrl %}
+
 {% set content %}
 	<div class="padded">
 		<table class="data fullwidth">
