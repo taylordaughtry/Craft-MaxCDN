@@ -47,12 +47,24 @@ class MaxCDNService extends BaseApplicationComponent
      */
     public function getZoneStats($id)
     {
-        return $this->callApi('/reports/' . $id . '/stats.json', 'stats');
+        $response = $this->callApi('/reports/' . $id . '/stats.json', 'stats');
+
+        // TODO: Will likely break here with multiple zones.
+        // Patch when you have multiple zones to test.
+        $response->size = $this->convertSize($response->size, 'GB');
+
+        return $response;
     }
 
     public function getPopularFiles()
     {
-        return $this->callApi('/reports/popularfiles.json', 'popularfiles');
+        $response = $this->callApi('/reports/popularfiles.json', 'popularfiles');
+
+        foreach ($response as &$file) {
+            $file->size = $this->convertSize($file->size, 'GB');
+        }
+
+        return $response;
     }
 
     public function convertSize($size, $unit = '')
