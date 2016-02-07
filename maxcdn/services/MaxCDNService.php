@@ -38,9 +38,9 @@ class MaxCDNService extends BaseApplicationComponent
     }
 
     /**
-     * Get the stats for a provided Zone. (Note: an ID will generally
+     * Get the stats for a provided Zone. Note that an ID will generally
      * be something like '12345'. Don't confuse the indexes on the
-     * zones array with the zone's actual ID.)
+     * zones array with the zone's actual ID.
      *
      * @param int $id
      * @return array
@@ -61,9 +61,9 @@ class MaxCDNService extends BaseApplicationComponent
      *
      * @method callApi
      *
-     * @param [type] $endpoint [description]
+     * @param string $endpoint API URL
      *
-     * @return [type] [description]
+     * @return array
      */
     private function callApi($endpoint, $reportType)
     {
