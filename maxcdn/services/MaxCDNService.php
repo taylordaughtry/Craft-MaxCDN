@@ -43,7 +43,7 @@ class MaxCDNService extends BaseApplicationComponent
      * zones array with the zone's actual ID.
      *
      * @param int $id
-     * @return array
+     * @return object
      */
     public function getZoneStats($id)
     {
@@ -56,6 +56,11 @@ class MaxCDNService extends BaseApplicationComponent
         return $response;
     }
 
+    /**
+     * Get the files in a zone, sorted by hits.
+     *
+     * @return object
+     */
     public function getPopularFiles()
     {
         $response = $this->callApi('/reports/popularfiles.json', 'popularfiles');
@@ -67,6 +72,14 @@ class MaxCDNService extends BaseApplicationComponent
         return $response;
     }
 
+    /**
+     * Helper method to convert sizes. Taken from Maxee.
+     *
+     * @param int $size The file's size in bytes
+     * @param string $unit
+     *
+     * @return string
+     */
     public function convertSize($size, $unit = '')
     {
         if ((! $unit and $size >= 1<<30) or $unit == 'GB') {
