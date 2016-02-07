@@ -54,6 +54,13 @@ class MaxCDNService extends BaseApplicationComponent
         return $response;
     }
 
+    public function getPopularFiles()
+    {
+        $response = $this->callApi('/reports/popularfiles.json', 'popularfiles');
+
+        return $response;
+    }
+
     /**
      * Make a call to the MaxCDN API with the provided endpoint, then
      * decode the response and return the data itself.
