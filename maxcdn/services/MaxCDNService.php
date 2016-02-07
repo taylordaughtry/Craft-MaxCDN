@@ -55,6 +55,23 @@ class MaxCDNService extends BaseApplicationComponent
         return $this->callApi('/reports/popularfiles.json', 'popularfiles');
     }
 
+    public function convertSize($size, $unit = '')
+    {
+        if ((! $unit and $size >= 1<<30) or $unit == 'GB') {
+            return number_format($size / (1<<30), 2).'GB';
+        }
+
+        if ((! $unit and $size >= 1<<20) or $unit == 'MB') {
+            return number_format($size / (1<<20), 2).'MB';
+        }
+
+        if ((! $unit and $size >= 1<<10) or $unit == 'KB') {
+            return number_format($size / (1<<10), 2) . 'KB';
+        }
+
+        return number_format($size) . ' bytes';
+    }
+
     /**
      * Make a call to the MaxCDN API with the provided endpoint, then
      * decode the response and return the data itself.
