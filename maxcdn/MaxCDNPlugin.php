@@ -166,7 +166,8 @@ class MaxCDNPlugin extends BasePlugin
     public function registerCpRoutes()
     {
         return [
-            'maxcdn' => ['action' => 'MaxCDN/index']
+            'maxcdn' => ['action' => 'MaxCDN/index'],
+            'maxcdn/zones' => ['action' => 'MaxCDN/zones'],
         ];
     }
 }

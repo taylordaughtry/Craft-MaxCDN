@@ -3,7 +3,7 @@
 {% set title = "MaxCDN"|t %}
 
 {% set tabs = {
-    first: { label: "Files"|t, url: url('maxcdn/files') },
+    first: { label: "Files"|t, url: url('maxcdn') },
     second: { label: "Zones"|t, url: url('maxcdn/zones') },
 } %}
 
@@ -15,51 +15,25 @@
 
 {% set content %}
 
-<div class="pane">
-	<h2>Files</h2>
-	<table class="data fullwidth">
-		<thead>
-			<tr>
-				<th scope="col">Filename</th>
-				<th scope="col">Cache Date</th>
-				<th scope="col">Hits</th>
-				<th scope="col">Size</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for file in files %}
-			<tr>
-				<td>{{ file.uri }}</td>
-				<td>{{ file.timestamp|date('M d, Y') }}</td>
-				<td>{{ file.hit }}</td>
-				<td>{{ file.size }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
-<div class="pane">
-	<h2>Zones</h2>
-	<table class="data fullwidth">
-		<thead>
-			<tr>
-				<th scope="col">Zone</th>
-				<th scope="col">Cache Hits</th>
-				<th scope="col">Hits</th>
-				<th scope="col">Non-Cache Hits</th>
-				<th scope="col">Size</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for zone in zones %}
-			<tr>
-				{% for stat in zone %}
-				<td>{{ stat }}</td>
-				{% endfor %}
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+<table class="data fullwidth">
+	<thead>
+		<tr>
+			<th scope="col">Filename</th>
+			<th scope="col">Cache Date</th>
+			<th scope="col">Hits</th>
+			<th scope="col">Size</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for file in files %}
+		<tr>
+			<td>{{ file.uri }}</td>
+			<td>{{ file.timestamp|date('M d, Y') }}</td>
+			<td>{{ file.hit }}</td>
+			<td>{{ file.size }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
 
 {% endset %}

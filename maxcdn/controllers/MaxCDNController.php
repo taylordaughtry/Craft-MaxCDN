@@ -19,6 +19,13 @@ class MaxCDNController extends BaseController
 	 */
 	public function actionIndex()
 	{
+		return $this->renderTemplate('maxcdn/index', [
+			'files' => craft()->maxCDN->getPopularFiles(),
+		]);
+	}
+
+	public function actionZones()
+	{
 		$zones = craft()->maxCDN->getZones();
 
 		$viewData = [];
@@ -36,9 +43,8 @@ class MaxCDNController extends BaseController
 			];
 		}
 
-		return $this->renderTemplate('maxcdn/index', [
-			'zones' => $viewData,
-			'files' => craft()->maxCDN->getPopularFiles(),
+		return $this->renderTemplate('maxcdn/zones', [
+				'zones' => $viewData,
 		]);
 	}
 }

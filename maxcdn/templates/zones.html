@@ -1,0 +1,40 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "MaxCDN"|t %}
+
+{% set tabs = {
+    first: { label: "Files"|t, url: url('maxcdn') },
+    second: { label: "Zones"|t, url: url('maxcdn/zones') },
+} %}
+
+{% set selectedTab = 'second' %}
+
+{% set extraPageHeaderHtml %}
+<div class="buttons right">
+	<a href="{{ siteUrl }}{{ craft.config.cpTrigger }}" class="btn submit" data-icon="settings" role="button">Manage Cache</a>
+</div>
+{% endset %}
+
+{% set content %}
+	<table class="data fullwidth">
+		<thead>
+			<tr>
+				<th scope="col">Zone</th>
+				<th scope="col">Cache Hits</th>
+				<th scope="col">Hits</th>
+				<th scope="col">Non-Cache Hits</th>
+				<th scope="col">Size</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for zone in zones %}
+			<tr>
+				{% for stat in zone %}
+				<td>{{ stat }}</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endset %}
