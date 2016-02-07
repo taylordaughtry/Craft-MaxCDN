@@ -21,6 +21,7 @@ class MaxCDNController extends BaseController
 	{
 		$zones = craft()->maxCDN->getZones();
 
+		$viewData = [];
 
 		foreach ($zones as $zone) {
 			$stats = craft()->maxCDN->getZoneStats($zone->id);
