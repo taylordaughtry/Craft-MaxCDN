@@ -1,19 +1,23 @@
 {% extends "_layouts/cp" %}
-
 {% set title = "MaxCDN"|t %}
 
-{% set tabs = {
-    first: { label: "Files"|t, url: url('maxcdn') },
-    second: { label: "Zones"|t, url: url('maxcdn/zones') },
-} %}
-
-{% set selectedTab = 'second' %}
-
 {% set extraPageHeaderHtml %}
-<div class="buttons right">
-	<a href="{{ url('maxcdn/cache') }}" class="btn submit" data-icon="settings" role="button">Manage Cache</a>
-</div>
+	<div class="buttons">
+		<a href="{{ url('maxcdn/cache') }}" class="btn" data-icon="settings" role="button">Manage Cache</a>
+	</div>
 {% endset %}
+
+{% set message = craft.session.getFlash('cacheCleared') %}
+
+{% set sidebar %}
+	<nav>
+		<ul>
+			<li><a href="{{ url('maxcdn') }}">Files</a></li>
+			<li><a href="{{ url('maxcdn/zones') }}" class="sel">Zones</a></li>
+		</ul>
+	</nav>
+{% endset %}
+
 
 {% set content %}
 	<table class="data fullwidth">
@@ -36,5 +40,6 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
+		</tbody>
+	</table>
 {% endset %}
