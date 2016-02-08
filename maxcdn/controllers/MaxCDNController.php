@@ -70,6 +70,10 @@ class MaxCDNController extends BaseController
 
 		 $zoneId = craft()->request->getPost('zone_id');
 
-		 return craft()->maxCDN->purgeFiles($zoneId);
+		 craft()->maxCDN->purgeFiles($zoneId);
+
+		 craft()->userSession->setNotice(Craft::t('Cache cleared.'));
+
+		 return $this->actionIndex();
 	}
 }

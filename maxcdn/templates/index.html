@@ -13,6 +13,8 @@
 </div>
 {% endset %}
 
+{% set message = craft.session.getFlash('cacheCleared') %}
+
 {% set content %}
 
 <table class="data fullwidth">

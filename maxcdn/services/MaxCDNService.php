@@ -80,7 +80,7 @@ class MaxCDNService extends BaseApplicationComponent
      */
     public function purgeFiles($zoneId)
     {
-        $this->callApi('/zones/pull.json' . $zoneId . '/cache', null, 'delete');
+        $this->callApi('/zones/pull.json/' . $zoneId . '/cache', null, 'delete');
     }
 
     /**
@@ -118,8 +118,20 @@ class MaxCDNService extends BaseApplicationComponent
      *
      * @return array
      */
-    private function callApi($endpoint, $reportType)
+    private function callApi($endpoint, $reportType, $callType = '')
     {
+
+        // TODO: If this is confirmed to clear the cache, do proper
+        // checking for the response code.
+        if ($callType) {
+            switch ($callType) {
+                case 'delete':
+                    $response = $this->api->delete($endpoint);
+                    return true;
+                    break;
+            }
+        }
+
         $response = $this->api->get($endpoint);
 
         return json_decode($response)->data->$reportType;
