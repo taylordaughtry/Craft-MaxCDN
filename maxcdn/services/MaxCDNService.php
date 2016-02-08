@@ -51,6 +51,13 @@ class MaxCDNService extends BaseApplicationComponent
 
 		// TODO: Will likely break here with multiple zones.
 		// Patch when you have multiple zones to test.
+
+		$response->hit = number_format($response->hit);
+
+		$response->cache_hit = number_format($response->cache_hit);
+
+		$response->noncache_hit = number_format($response->noncache_hit);
+
 		$response->size = $this->convertSize($response->size, 'GB');
 
 		return $response;
@@ -66,6 +73,7 @@ class MaxCDNService extends BaseApplicationComponent
 		$response = $this->callApi('/reports/popularfiles.json', 'popularfiles');
 
 		foreach ($response as &$file) {
+			$file->hit = number_format($file->hit);
 			$file->size = $this->convertSize($file->size, 'GB');
 		}
 
