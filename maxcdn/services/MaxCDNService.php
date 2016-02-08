@@ -73,6 +73,17 @@ class MaxCDNService extends BaseApplicationComponent
     }
 
     /**
+     * Delete the zone by its provided ID.
+     *
+     * @param  int $zoneId
+     * @return void
+     */
+    public function purgeFiles($zoneId)
+    {
+        $this->callApi('/zones/pull.json' . $zoneId . '/cache', null, 'delete');
+    }
+
+    /**
      * Helper method to convert sizes. Taken from Maxee.
      *
      * @param int $size The file's size in bytes

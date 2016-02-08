@@ -168,6 +168,7 @@ class MaxCDNPlugin extends BasePlugin
         return [
             'maxcdn' => ['action' => 'MaxCDN/index'],
             'maxcdn/zones' => ['action' => 'MaxCDN/zones'],
+            'maxcdn/cache' => ['action' => 'MaxCDN/cache'],
         ];
     }
 }

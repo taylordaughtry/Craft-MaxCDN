@@ -47,4 +47,29 @@ class MaxCDNController extends BaseController
 				'zones' => $viewData,
 		]);
 	}
+
+	public function actionCache()
+	{
+		$zones = craft()->maxCDN->getZones();
+
+		foreach ($zones as $zone) {
+			$options[] = [
+				'label' => $zone->name,
+				'value' => $zone->id,
+			];
+		}
+
+		return $this->renderTemplate('maxcdn/cache', [
+			'options' => $options,
+		]);
+	}
+
+	public function actionPurgeCache()
+	{
+		 $this->requirePostRequest();
+
+		 $zoneId = craft()->request->getPost('zone_id');
+
+		 return craft()->maxCDN->purgeFiles($zoneId);
+	}
 }
